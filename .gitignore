@@ -1,0 +1,7 @@
+target/
+dist/
+.idea/
+.gradle/
+build/
+log/
+.DS_Store
