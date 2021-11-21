@@ -2,31 +2,35 @@ package com.dianatuman.accountservice.services;
 
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 
-/**
- * @author Diana Tumanian dianatumanian@gmail.com
- */
 @Service
-public class AccountServiceImpl implements AccountService{
+public class AccountServiceImpl implements AccountService {
 
-    HashMap<Integer, Long> accounts = new HashMap<>();
+    private final ConcurrentHashMap<Integer, Long> accounts = new ConcurrentHashMap<>();
 
     @Override
     public Long getAmount(Integer id) {
-        if (accounts.containsKey(id))
-            return accounts.get(id);
-        else
-            return 0l;
+        return accounts.getOrDefault(id, 0L);
     }
 
     @Override
     public void addAmount(Integer id, Long value) {
-        if (!accounts.containsKey(id))
-            accounts.put(id, value);
-        else {
-            Long prevValue = accounts.get(id);
-            accounts.put(id, prevValue+value);
+        if (value < 0) {
+            withdrawMoney(id, value);
+        } else {
+            var currentValue = getAmount(id);
+            accounts.put(id, currentValue + value);
         }
+    }
+
+    private void withdrawMoney(Integer id, Long value) {
+        var currentValue = getAmount(id);
+        if (currentValue >= -value) {
+            accounts.put(id, currentValue + value);
+        } else {
+            throw new IllegalArgumentException("There is not enough money on the account with an id " + id);
+        }
+
     }
 }
