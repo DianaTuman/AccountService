@@ -39,7 +39,6 @@ public class AccountServiceConcurrentTest {
         start.countDown();
         service.awaitTermination(10, SECONDS);
 
-
         // then
         ids.forEach(id -> assertEquals(500L, accountService.getAmount(id)));
     }
@@ -64,7 +63,6 @@ public class AccountServiceConcurrentTest {
         });
         start.countDown();
         service.awaitTermination(10, SECONDS);
-
 
         // then
         assertEquals(100 * 500L, accountService.getAmount(id));

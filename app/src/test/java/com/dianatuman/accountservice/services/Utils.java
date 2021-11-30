@@ -15,26 +15,4 @@ public class Utils {
         return new Random().nextInt();
     }
 
-    public static void runConcurrently(Integer numberOfRuns, Consumer<Integer> task) {
-        ExecutorService service = Executors.newFixedThreadPool(4);
-        CountDownLatch start = new CountDownLatch(1);
-
-        IntStream.range(0, numberOfRuns).forEach(i -> {
-            service.submit(() -> {
-                try {
-                    start.await();
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-                task.accept(i);
-            });
-        });
-        try {
-            service.awaitTermination(10, SECONDS);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        start.countDown();
-    }
-
 }
