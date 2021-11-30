@@ -2,9 +2,6 @@ package com.dianatuman.accountservice.services;
 
 import org.springframework.stereotype.Service;
 
-/**
- * @author Diana Tumanian dianatumanian@gmail.com
- */
 @Service
 public interface AccountService {
 
@@ -18,7 +15,7 @@ public interface AccountService {
     /**
      * Increases balance or set if addAmount() method was called first time
      *
-     * @param id balance identifier
+     * @param id    balance identifier
      * @param value positive or negative value, which must be added to current balance
      */
     void addAmount(Integer id, Long value);

@@ -5,9 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-/**
- * @author Diana Tumanian dianatumanian@gmail.com
- */
 @RestController
 @RequestMapping("/api/account")
 public class AccountController {
@@ -26,7 +23,7 @@ public class AccountController {
 
     @ResponseBody
     @GetMapping(value = "/addAmount")
-    public ResponseEntity<Long> addAmount(@RequestParam Integer id, @RequestParam Long value){
+    public ResponseEntity<Long> addAmount(@RequestParam Integer id, @RequestParam Long value) {
         accountService.addAmount(id, value);
         return new ResponseEntity<>(accountService.getAmount(id), HttpStatus.OK);
     }
