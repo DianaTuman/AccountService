@@ -7,6 +7,12 @@ plugins {
 group 'com.dianatuman'
 version '1.0-SNAPSHOT'
 
+allprojects {
+    ext {
+        jvmVersion = JavaVersion.VERSION_17
+    }
+}
+
 repositories {
     mavenCentral()
 }
