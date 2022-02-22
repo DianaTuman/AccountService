@@ -1,8 +1,5 @@
 package com.dianatuman.accountservice.services;
 
-import com.dianatuman.accountservice.services.AccountService;
-import com.dianatuman.accountservice.services.AccountServiceImpl;
-import com.dianatuman.accountservice.services.Utils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -36,7 +33,7 @@ public class AccountServiceTest {
         accountService.addAmount(id, initialValue);
 
         // when
-        assertThrows(IllegalArgumentException.class, ()-> accountService.addAmount(id, -valueToWithdraw));
+        assertThrows(IllegalArgumentException.class, () -> accountService.addAmount(id, -valueToWithdraw));
         var actualValue = accountService.getAmount(id);
 
         // then
@@ -82,7 +79,6 @@ public class AccountServiceTest {
         // then
         assertEquals(expectedValue, actualValue);
     }
-
 
 
 }

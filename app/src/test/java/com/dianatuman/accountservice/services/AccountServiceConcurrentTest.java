@@ -1,7 +1,5 @@
 package com.dianatuman.accountservice.services;
 
-import com.dianatuman.accountservice.services.AccountService;
-import com.dianatuman.accountservice.services.AccountServiceImpl;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
