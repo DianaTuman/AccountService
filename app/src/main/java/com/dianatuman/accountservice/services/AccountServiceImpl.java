@@ -22,7 +22,6 @@ public class AccountServiceImpl implements AccountService {
         } else {
             accounts.compute(id, (key, val) -> (val == null) ? (DEFAULT_VALUE + value) : (val + value));
         }
-
     }
 
     private void withdrawMoney(Integer id, Long value) {

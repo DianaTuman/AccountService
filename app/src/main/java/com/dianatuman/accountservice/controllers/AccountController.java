@@ -17,7 +17,6 @@ public class AccountController {
     @GetMapping(value = "/balance")
     public Long getAmount(@RequestParam Integer id) {
         return accountService.getAmount(id);
-
     }
 
     @ResponseBody
